@@ -13,6 +13,25 @@ public class UserDTO {
     private String city;
     private Integer socialCategory;
 
+    public UserDTO() {
+    }
+
+    public UserDTO(String name, String document, String telephone, String status, String gender,
+                   Integer age, String homeRole, Boolean isWorking, Boolean hasChildren,
+                   String city, Integer socialCategory) {
+        this.name = name;
+        this.document = document;
+        this.telephone = telephone;
+        this.status = status;
+        this.gender = gender;
+        this.age = age;
+        this.homeRole = homeRole;
+        this.isWorking = isWorking;
+        this.hasChildren = hasChildren;
+        this.city = city;
+        this.socialCategory = socialCategory;
+    }
+
     public String getName() {
         return name;
     }
