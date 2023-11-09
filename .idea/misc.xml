@@ -9,10 +9,14 @@
         <option value="$PROJECT_DIR$/psychology/pom.xml" />
         <option value="$PROJECT_DIR$/../api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/../SAUL MOLINA/My_well_being_backend/economy/pom.xml" />
+        <option value="$PROJECT_DIR$/economy/pom.xml" />
+        <option value="$PROJECT_DIR$/../SAUL MOLINA/My_well_being_backend/education/pom.xml" />
+        <option value="$PROJECT_DIR$/education/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="20" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="20" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
