@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("economy")
 public class EconomyController {
+
     @Autowired
     private EconomyService economyService;
+
+
     @PostMapping
     public ResponseEntity<EconomyEntity> create (@RequestBody EconomyDto economyDto){
         EconomyEntity economyEntity = economyService.create(economyDto);
@@ -22,7 +26,7 @@ public class EconomyController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EconomyEntity>> geAllAmswers() {
+    public ResponseEntity<List<EconomyEntity>> geAllAnswers() {
         List<EconomyEntity> economies = economyService.showAnswers();
         return new ResponseEntity<>(economies,HttpStatus.OK);
     }

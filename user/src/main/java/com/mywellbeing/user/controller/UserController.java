@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -19,17 +20,20 @@ public class UserController {
     @Autowired
     private UserService service;
 
+
     @PostMapping
     ResponseEntity<User> create (@RequestBody UserDTO userDTO){
         User user = service.createUser(userDTO);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
+
     @GetMapping
     ResponseEntity<List<User>>getAll(){
         List<User> users = service.getAll();
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
+
 
     @GetMapping("/{id}")
     ResponseEntity<User> getOne(@PathVariable Long id){
@@ -38,12 +42,14 @@ public class UserController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+
     @PutMapping("/{id}")
     ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserDTO userDTO){
         return service.update(userDTO,id)
                 .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> delete(@PathVariable Long id){
