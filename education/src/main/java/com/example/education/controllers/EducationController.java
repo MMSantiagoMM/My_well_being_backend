@@ -1,7 +1,7 @@
 package com.example.education.controllers;
 
 import com.example.education.entity.EducationEntity;
-import com.example.education.model.EducationDto;
+import com.example.education.dto.EducationDto;
 import com.example.education.service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

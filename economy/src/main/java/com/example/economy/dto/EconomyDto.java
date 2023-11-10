@@ -1,11 +1,10 @@
-package com.example.economy.model;
+package com.example.economy.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
 public class EconomyDto {
-    private Long id;
+
     private Integer answerOne;
     private Integer answerTwo;
     private Integer answerThree;

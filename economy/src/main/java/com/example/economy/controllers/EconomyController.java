@@ -1,7 +1,7 @@
 package com.example.economy.controllers;
 
 import com.example.economy.entity.EconomyEntity;
-import com.example.economy.model.EconomyDto;
+import com.example.economy.dto.EconomyDto;
 import com.example.economy.service.EconomyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

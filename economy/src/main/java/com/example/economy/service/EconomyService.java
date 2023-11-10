@@ -2,7 +2,7 @@ package com.example.economy.service;
 
 import com.example.economy.entity.EconomyEntity;
 import com.example.economy.exceptions.EconomyNotFoundException;
-import com.example.economy.model.EconomyDto;
+import com.example.economy.dto.EconomyDto;
 import com.example.economy.repository.EconomyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

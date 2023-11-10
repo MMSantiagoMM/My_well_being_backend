@@ -2,7 +2,7 @@ package com.example.education.service;
 
 import com.example.education.entity.EducationEntity;
 import com.example.education.exceptions.EducationNotFoundException;
-import com.example.education.model.EducationDto;
+import com.example.education.dto.EducationDto;
 import com.example.education.repository.EducationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
