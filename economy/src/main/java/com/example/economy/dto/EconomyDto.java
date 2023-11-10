@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class EconomyDto {
 
-    private Integer answerOne;
-    private Integer answerTwo;
-    private Integer answerThree;
+    private Integer firstAnswer;
+    private Integer secondAnswer;
+    private Integer thirdAnswer;
     private Long idUser;
 }

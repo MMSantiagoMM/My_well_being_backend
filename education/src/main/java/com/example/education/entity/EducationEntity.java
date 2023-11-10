@@ -11,12 +11,13 @@ public class EducationEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",nullable = false)
     private Long id;
-    @Column(name = "answer_one")
-    private Integer answerOne;
-    @Column(name = "answer_two")
-    private Integer answerTwo;
-    @Column(name = "answer_three")
-    private Integer answerThree;
+    @Column(name = "first_answer")
+    private Integer firstAnswer;
+    @Column(name = "second_answer")
+    private Integer SecondAnswer;
+    @Column(name = "third_answer")
+    private Integer thirdAnswer;
     @Column(name = "id_user")
     private Long idUser;
 }
+

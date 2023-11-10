@@ -26,9 +26,9 @@ public class EducationService {
 
     public EducationEntity create(EducationDto educationDto){
         EducationEntity educationEntity = new EducationEntity();
-        educationEntity.setAnswerOne(educationDto.getAnswerOne());
-        educationEntity.setAnswerTwo(educationDto.getAnswerTwo());
-        educationEntity.setAnswerThree(educationDto.getAnswerThree());
+        educationEntity.setFirstAnswer(educationDto.getFirstAnswer());
+        educationEntity.setSecondAnswer(educationDto.getSecondAnswer());
+        educationEntity.setThirdAnswer(educationDto.getThirdAnswer());
         educationEntity.setIdUser(educationDto.getIdUser());
         educationRepository.save(educationEntity);
         return educationRepository.save(educationEntity);
@@ -36,9 +36,9 @@ public class EducationService {
     public Optional<EducationEntity> update(Long id ,EducationDto educationDto) {
         return Optional.ofNullable(educationRepository.findById(id)
                 .map(educationEntity -> {
-                    educationEntity.setAnswerOne(educationDto.getAnswerOne());
-                    educationEntity.setAnswerTwo(educationDto.getAnswerTwo());
-                    educationEntity.setAnswerThree(educationDto.getAnswerThree());
+                    educationEntity.setFirstAnswer(educationDto.getFirstAnswer());
+                    educationEntity.setSecondAnswer(educationDto.getSecondAnswer());
+                    educationEntity.setThirdAnswer(educationDto.getThirdAnswer());
                     educationEntity.setIdUser(educationDto.getIdUser());
                     return educationRepository.save(educationEntity);
                 })
