@@ -2,19 +2,29 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="psychology" />
         <module name="api-gateway" />
+        <module name="education" />
+        <module name="economy" />
+        <module name="psychology" />
         <module name="user" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="economy (1)" target="17" />
+      <module name="economy (2)" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
+      <module name="economy" options="-parameters" />
+      <module name="economy (1)" options="-parameters" />
+      <module name="education" options="-parameters" />
       <module name="psychology" options="-parameters" />
       <module name="user" options="-parameters" />
     </option>
