@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/education")
-public class EducacionController {
+@RequestMapping("education")
+public class EducationController {
     @Autowired
     private EducationService educationService;
+
     @PostMapping
     public ResponseEntity<EducationEntity> create (@RequestBody EducationDto educationDto){
         EducationEntity educationEntity = educationService.create(educationDto);

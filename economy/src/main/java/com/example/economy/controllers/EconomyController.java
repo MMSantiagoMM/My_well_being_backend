@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/economy")
+@RequestMapping("economy")
 public class EconomyController {
     @Autowired
     private EconomyService economyService;
