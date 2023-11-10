@@ -1,6 +1,7 @@
 package com.example.education.service;
 
 import com.example.education.entity.EducationEntity;
+import com.example.education.exceptions.EducationNotFoundException;
 import com.example.education.model.EducationDto;
 import com.example.education.repository.EducationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,40 +15,42 @@ public class EducationService {
     @Autowired
     EducationRepository educationRepository;
 
-    public EducationDto createAnswer(EducationDto educationDto){
-        EducationEntity educationEntity = new EducationEntity();
+    public List<EducationEntity> showAnswers(){
+        return  educationRepository.findAll();
+    }
 
+    public Optional<EducationEntity> GetResponseById(Long id) {
+        return Optional.ofNullable(educationRepository.findById(id))
+                .orElseThrow( () -> new EducationNotFoundException(id) );
+    }
+
+    public EducationEntity create(EducationDto educationDto){
+        EducationEntity educationEntity = new EducationEntity();
         educationEntity.setAnswerOne(educationDto.getAnswerOne());
         educationEntity.setAnswerTwo(educationDto.getAnswerTwo());
         educationEntity.setAnswerThree(educationDto.getAnswerThree());
         educationEntity.setIdUser(educationDto.getIdUser());
         educationRepository.save(educationEntity);
-        return educationDto;
+        return educationRepository.save(educationEntity);
+    }
+    public Optional<EducationEntity> update(Long id ,EducationDto educationDto) {
+        return Optional.ofNullable(educationRepository.findById(id)
+                .map(educationEntity -> {
+                    educationEntity.setAnswerOne(educationDto.getAnswerOne());
+                    educationEntity.setAnswerTwo(educationDto.getAnswerTwo());
+                    educationEntity.setAnswerThree(educationDto.getAnswerThree());
+                    educationEntity.setIdUser(educationDto.getIdUser());
+                    return educationRepository.save(educationEntity);
+                })
+                .orElseThrow(() -> new EducationNotFoundException(id)));
     }
 
-    public EducationDto updateAnswer( EducationDto educationDto){
-        Optional<EducationEntity> answerOptional = educationRepository.findById(educationDto.getIdEducation());
-
-        if (answerOptional.isPresent()){
-            EducationEntity educationEntity = new EducationEntity();
-
-            educationEntity.setAnswerOne(educationDto.getAnswerOne());
-            educationEntity.setAnswerTwo(educationDto.getAnswerTwo());
-            educationEntity.setAnswerThree(educationDto.getAnswerThree());
-            educationEntity.setIdUser(educationDto.getIdUser());
-            educationRepository.save(educationEntity);
-        }return educationDto;
-    }
-    public List<EducationEntity> showAnswers(){
-        return  educationRepository.findAll();
-    }
-
-    public EducationEntity GetResponseById(Long idEducation) {
-        return educationRepository.findById(idEducation).orElse(null);
-    }
-
-    public void deleteAnswer(Long idEducation) {
-        educationRepository.existsById(idEducation);
-        educationRepository.deleteById(idEducation);
+    public Boolean deleteAnswer(Long id) {
+        if (educationRepository.findById(id).isPresent()){
+            educationRepository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
     }
 }

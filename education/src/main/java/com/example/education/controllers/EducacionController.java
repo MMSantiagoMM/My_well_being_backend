@@ -15,40 +15,36 @@ import java.util.List;
 public class EducacionController {
     @Autowired
     private EducationService educationService;
-    @PostMapping("/createanswer")
-    @ResponseStatus(HttpStatus.CREATED)
-    public EducationDto createAnswer(@RequestBody EducationDto educationDto){
-        return educationService.createAnswer(educationDto);
+    @PostMapping
+    public ResponseEntity<EducationEntity> create (@RequestBody EducationDto educationDto){
+        EducationEntity educationEntity = educationService.create(educationDto);
+        return new ResponseEntity<>(educationEntity,HttpStatus.CREATED);
     }
 
-    @GetMapping("/answers")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<EducationEntity> geAllAmswers() {
-        return educationService.showAnswers();
+    @GetMapping
+    public ResponseEntity<List<EducationEntity>> geAllAmswers() {
+        List<EducationEntity> educations = educationService.showAnswers();
+        return new ResponseEntity<>(educations,HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{idEducation}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteAnswer(@PathVariable Long idEducation) {
-        educationService.deleteAnswer(idEducation);
-    }
-    @GetMapping("/getbyid/{idEducation}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public EducationEntity checkanswer(@PathVariable Long idEducation){
-        return educationService.GetResponseById(idEducation);
-    }
-    @PutMapping("/update")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<EducationDto> updateAnswer(@PathVariable Long idEducation, @RequestBody EducationDto educationDto){
-
-        educationDto.setIdEducation(idEducation);
-        EducationDto answerUpdate = educationService.updateAnswer(educationDto);
-
-        if (answerUpdate != null){
-            return new ResponseEntity<>(answerUpdate, HttpStatus.ACCEPTED);
-        }else {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        if(educationService.deleteAnswer(id)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<EducationEntity> getResponseById(@PathVariable Long id){
+        return educationService.GetResponseById(id)
+                .map(educationEntity -> new ResponseEntity<>(educationEntity,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<EducationEntity> updateAnswer(@PathVariable Long id, @RequestBody EducationDto educationDto){
+        return educationService.update(id,educationDto)
+                .map(economyEntity -> new ResponseEntity<>(economyEntity,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

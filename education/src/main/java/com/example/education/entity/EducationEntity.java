@@ -9,8 +9,8 @@ import lombok.Data;
 public class EducationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_education",nullable = false)
-    private Long idEducation;
+    @Column(name = "id",nullable = false)
+    private Long id;
     @Column(name = "answer_one")
     private Integer answerOne;
     @Column(name = "answer_two")

@@ -10,8 +10,8 @@ public class EconomyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_economy",nullable = false)
-    private Long idEconomy;
+    @Column(name = "id",nullable = false)
+    private Long id;
     @Column(name = "answer_one")
     private Integer answerOne;
     @Column(name = "answer_two")

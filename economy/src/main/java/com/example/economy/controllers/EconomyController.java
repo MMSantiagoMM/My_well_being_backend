@@ -15,41 +15,37 @@ import java.util.List;
 public class EconomyController {
     @Autowired
     private EconomyService economyService;
-    @PostMapping("/createanswer")
-    @ResponseStatus(HttpStatus.CREATED)
-    public EconomyDto createAnswer(@RequestBody EconomyDto economyDto){
-        return economyService.createAnswer(economyDto);
-    }
-    @GetMapping("/getbyid/{idEducation}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public EconomyEntity checkanswer(@PathVariable Long idEconomy){
-        return economyService.GetResponseById(idEconomy);
+    @PostMapping
+    public ResponseEntity<EconomyEntity> create (@RequestBody EconomyDto economyDto){
+        EconomyEntity economyEntity = economyService.create(economyDto);
+        return new ResponseEntity<>(economyEntity,HttpStatus.CREATED);
     }
 
-    @GetMapping("/answers")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<EconomyEntity> geAllAmswers() {
-        return economyService.showAnswers();
+    @GetMapping
+    public ResponseEntity<List<EconomyEntity>> geAllAmswers() {
+        List<EconomyEntity> economies = economyService.showAnswers();
+        return new ResponseEntity<>(economies,HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{idEconomy}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteAnswer(@PathVariable Long idEconomy) {
-        economyService.DeleteAnswer(idEconomy);
+    @GetMapping("/{id}")
+    public ResponseEntity<EconomyEntity> getResponseById(@PathVariable Long id){
+        return economyService.GetResponseById(id)
+                .map(economyEntity -> new ResponseEntity<>(economyEntity,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/update")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<EconomyDto> updateAnswer(@PathVariable Long idEconomy, @RequestBody EconomyDto economyDto){
-
-        economyDto.setIdEconomy(idEconomy);
-        EconomyDto answerUpdate = economyService.updateAnswer(economyDto);
-
-        if (answerUpdate != null){
-            return new ResponseEntity<>(answerUpdate, HttpStatus.ACCEPTED);
-        }else {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        if(economyService.DeleteAnswer(id)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<EconomyEntity> updateAnswer(@PathVariable Long id, @RequestBody EconomyDto economyDto){
+        return economyService.update(id,economyDto)
+                .map(economyEntity -> new ResponseEntity<>(economyEntity,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

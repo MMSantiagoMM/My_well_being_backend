@@ -8,5 +8,5 @@ public class EducationDto {
     private Integer answerTwo;
     private Integer answerThree;
     private Long idUser;
-    private Long idEducation;
+    private Long id;
 }
