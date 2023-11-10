@@ -27,9 +27,9 @@ public class EconomyService {
 
     public EconomyEntity create(EconomyDto economyDto){
         EconomyEntity economyEntity = new EconomyEntity();
-        economyEntity.setAnswerOne(economyDto.getAnswerOne());
-        economyEntity.setAnswerTwo(economyDto.getAnswerTwo());
-        economyEntity.setAnswerThree(economyDto.getAnswerThree());
+        economyEntity.setFirstAnswer(economyDto.getFirstAnswer());
+        economyEntity.setSecondAnswer(economyDto.getSecondAnswer());
+        economyEntity.setThirdAnswer(economyDto.getThirdAnswer());
         economyEntity.setIdUser(economyDto.getIdUser());
         economyRepository.save(economyEntity);
         return economyRepository.save(economyEntity);
@@ -37,9 +37,9 @@ public class EconomyService {
     public Optional<EconomyEntity> update(Long id ,EconomyDto economyDto) {
         return Optional.ofNullable(economyRepository.findById(id)
                 .map(economyEntity -> {
-                 economyEntity.setAnswerOne(economyDto.getAnswerOne());
-                 economyEntity.setAnswerTwo(economyDto.getAnswerTwo());
-                 economyEntity.setAnswerThree(economyDto.getAnswerThree());
+                 economyEntity.setFirstAnswer(economyDto.getFirstAnswer());
+                 economyEntity.setSecondAnswer(economyDto.getSecondAnswer());
+                 economyEntity.setThirdAnswer(economyDto.getThirdAnswer());
                  economyEntity.setIdUser(economyDto.getIdUser());
                  return economyRepository.save(economyEntity);
                 })
